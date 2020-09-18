@@ -1,0 +1,17 @@
+{
+    "name": "zachwatkins/continuous-deployment-scripts",
+    "description": "Scripts relevant for establishing a continuous deployment pipeline.",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Zachary Watkins",
+            "email": "watkinza@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+    },
+  "require-dev": {
+    "wp-coding-standards/wpcs": "^1.0"
+  }
+}
