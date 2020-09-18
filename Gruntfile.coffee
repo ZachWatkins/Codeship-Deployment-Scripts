@@ -8,6 +8,9 @@ module.exports = (grunt) ->
       msg: ''
       post: ''
       url: ''
+    watch:
+      files: ['css/src/**/*.scss']
+      tasks: ['develop']
     compress:
       main:
         options:
@@ -21,9 +24,67 @@ module.exports = (grunt) ->
           {src: ['*.php']},
           {src: ['readme.md']}
         ]
+    postcss:
+      pkg:
+        options:
+          processors: [
+            require('autoprefixer')()
+            require('cssnano')()
+          ]
+          failOnError: true
+        files:
+          'css/style.css': 'css/style.css'
+      dev:
+        options:
+          map: true
+          processors: [
+            require('autoprefixer')()
+          ]
+          failOnError: true
+        files:
+          'css/style.css': 'css/style.css'
+    merge_media:
+      pkg:
+        options:
+          compress: true
+        files:
+          'css/style.css': 'css/style.css'
+      dev:
+        options:
+          compress: false
+        files:
+          'css/style.css': 'css/style.css'
+    sass:
+      pkg:
+        options:
+          implementation: sass
+          noSourceMap: true
+          outputStyle: 'compressed'
+          precision: 4
+        files:
+          'css/style.css': 'css/src/style.scss'
+      dev:
+        options:
+          implementation: sass
+          sourceMap: true
+          outputStyle: 'nested'
+          precision: 4
+        files:
+          'css/style.css': 'css/src/style.scss'
+    sasslint:
+      options:
+        configFile: '.sass-lint.yml'
+      target: ['css/**/*.s+(a|c)ss']
 
+  @loadNpmTasks 'grunt-contrib-watch'
   @loadNpmTasks 'grunt-contrib-compress'
+  @loadNpmTasks 'grunt-sass-lint'
+  @loadNpmTasks 'grunt-sass'
+  @loadNpmTasks 'grunt-postcss'
+  @loadNpmTasks 'grunt-merge-media'
 
+  @registerTask 'default', ['sasslint', 'sass:pkg', 'concat:dist', 'merge_media:pkg', 'postcss:pkg']
+  @registerTask 'develop', ['sasslint', 'sass:dev', 'concat:dev', 'merge_media:dev', 'postcss:dev']
   @registerTask 'release', ['compress', 'makerelease']
   @registerTask 'makerelease', 'Set release branch for use in the release task', ->
     done = @async()
@@ -134,3 +195,6 @@ module.exports = (grunt) ->
       done(err)
       return
     return
+
+  @event.on 'watch', (action, filepath) =>
+    @log.writeln('#{filepath} has #{action}')
