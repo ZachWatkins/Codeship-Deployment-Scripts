@@ -1,0 +1,22 @@
+a {
+  color: $dark-blue;
+}
+
+body {
+  font-family: $body-font;
+}
+
+header,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $header-font;
+  line-height: $header-lineheight;
+}
+
+p {
+  line-height: $paragraph-lineheight;
+}
