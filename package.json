@@ -1,0 +1,35 @@
+{
+  "name": "continuous-deployment-scripts",
+  "version": "1.0.0",
+  "description": "Scripts relevant for establishing a continuous deployment pipeline.",
+  "main": "deploy.sh",
+  "scripts": {
+    "start": "git config core.hooksPath hooks && chmod u+x ./hooks/pre-commit && composer install && npm install && grunt",
+    "checkwp": "npm run configphpcs && npm run checkphp",
+    "configphpcs": "vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
+    "checkphp": "vendor/bin/phpcs --standard=WordPress ./*.php ./src",
+    "fixphp": "vendor/bin/phpcbf --standard=WordPress ./*.php ./src"
+  },
+  "author": "Zachary Watkins",
+  "license": "GPL-2.0+",
+  "bugs": {
+    "url": "https://github.com/zachwatkins/continuous-deployment-scripts/issues",
+    "email": "watkinza@gmail.com"
+  },
+  "dependencies": {
+    "grunt": "^1.0.4",
+    "grunt-contrib-compress": "^1.6.0",
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zachwatkins/continuous-deployment-scripts.git"
+  },
+  "homepage": "https://github.com/zachwatkins/continuous-deployment-scripts#readme",
+  "browserslist": [
+    "last 2 versions",
+    "ie > 9"
+  ]
+}
