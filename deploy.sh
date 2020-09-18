@@ -3,7 +3,7 @@ if [ -f ${HOME}/clone/.git/shallow ]; then git fetch --unshallow; fi
 
 # Add Git config data.
 git config --global user.name "codeship-repo-name"
-git config --global user.email "zachary.watkins@ag.tamu.edu"
+git config --global user.email "watkinza@gmail.com"
 git config --global github.token RELEASE_KEY
 
 # Move repo files to a folder heirarchy like wp-content/plugins/plugin-name/.
