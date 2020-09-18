@@ -1,0 +1,45 @@
+/* Breakpoints
+--------------------------------------------- */
+$breakpoints: (
+	small: 0,
+	medium: 640px,
+	medium2: 701px,
+	large: 1024px,
+	xlarge: 1200px,
+	xxlarge: 1440px,
+);
+$break-medium: map-get($breakpoints, medium);
+$break-large: map-get($breakpoints, large);
+$break-xlarge: map-get($breakpoints, xlarge);
+$break-xxlarge: map-get($breakpoints, xlarge);
+
+/* Colors
+--------------------------------------------- */
+$white: #FFFFFF;
+$light-blue: #27A9E1;
+$dark-blue: #02233B;
+$light-green: #B4D234;
+$yellow: #FF0;
+$maroon: #500000;
+$almost-black: #0A0A0A;
+$pastel-green: #3ADB76;
+$red: #CC4B37;
+$color-palette: (
+	primary: $light-blue,
+	secondary: $light-green,
+	anchor: $dark-blue,
+	success: $pastel-green,
+	warning: $yellow,
+	alert: $red,
+) !default;
+$primary-color: map-get($color-palette, primary);
+
+/* Fonts
+--------------------------------------------- */
+$monoton: "Monoton", cursive;
+$opensans: "Open Sans", sans-serif;
+$oswald: "Oswald", sans-serif;
+$header-font: $oswald;
+$body-font: $opensans;
+$header-lineheight: 1.35;
+$paragraph-lineheight: 1.35;
